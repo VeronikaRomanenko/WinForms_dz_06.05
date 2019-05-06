@@ -15,6 +15,27 @@ namespace WinForms_dz_06._05
         public Form1()
         {
             InitializeComponent();
+            Load += Form1_Load;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            notifyIcon1.BalloonTipText = "Нажмите, чтобы отобразить окно";
+            notifyIcon1.BalloonTipTitle = "Подсказка";
+            notifyIcon1.ShowBalloonTip(10);
+            notifyIcon1.Click += NotifyIcon1_Click;
+        }
+
+        private void NotifyIcon1_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal || this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
 
         private void btnAddTopMenu_Click(object sender, EventArgs e)
